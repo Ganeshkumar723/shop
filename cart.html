@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart - ShopEase</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: brown;
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-container h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item span {
+      font-size: 1.1rem;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      margin-right: 1rem;
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-item button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+
+    .cart-item button:hover {
+      background: darkred;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 2rem auto 0;
+      padding: 0.6rem 1.2rem;
+      background-color: brown;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      width: fit-content;
+    }
+
+    .back-btn:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🛒 Your Cart</h1>
+  </header>
+
+  <div class="cart-container" id="cartItems">
+    <h2>Items in Your Cart</h2>
+    <!-- Cart items will be shown here -->
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Shop</a>
+
+  <script>
+    const cartItemsContainer = document.getElementById('cartItems');
+    let cartData = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function updateCartDisplay() {
+      const existingItems = cartItemsContainer.querySelectorAll('.cart-item');
+      existingItems.forEach(item => item.remove());
+
+      if (cartData.length === 0) {
+        cartItemsContainer.innerHTML += '<p style="text-align:center;">Your cart is empty.</p>';
+      } else {
+        cartData.forEach((item, index) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'cart-item';
+          itemDiv.innerHTML = `
+            <div class="cart-item-details">
+              <img src="${item.img}" alt="${item.name}" onerror="this.src='https://source.unsplash.com/50x50/?product'">
+              <span>${item.name}</span>
+            </div>
+            <div>
+              <span>${item.price}</span>
+              <button onclick="removeItem(${index})">Remove</button>
+            </div>
+          `;
+          cartItemsContainer.appendChild(itemDiv);
+        });
+      }
+    }
+
+    function removeItem(index) {
+      cartData.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cartData));
+      updateCartDisplay();
+    }
+
+    updateCartDisplay();
+  </script>
+</body>
+
+</html>

@@ -1,251 +1,388 @@
+<!-- Full updated version with subtle fixes -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopEase</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: wheat;
+        }
+
+        header {
+            background-color: brown;
+            color: white;
+            padding: 40px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        nav a {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .hero {
+            font-size: 2rem;
+            text-align: center;
+            margin: 4rem;
+            color: rgb(240, 66, 231);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .products {
+            padding: 2rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .product-card {
+            width: 400px;
+            background: linear-gradient(180deg, rgb(129, 252, 235), rgb(203, 146, 250));
+            padding: 1rem;
+            text-align: center;
+            margin: auto;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            border-radius: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.15);
+        }
+
+        .product-card img {
+            height: 150px;
+            width: auto;
+            max-width: 100%;
+            margin: 0 auto 2rem auto;
+            border-radius: 20px;
+            display: block;
+            object-fit: cover;
+        }
+
+
+        .product-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card p {
+            color: red;
+            text-transform: capitalize;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            animation: pulse 1s infinite;
+        }
+
+        .product-card button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card button:hover {
+            background-color: #00ff00;
+            color: black;
+        }
+
+        .newsletter {
+            background: #f4f4f4;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .newsletter h2,
+        .newsletter p {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            width: 250px;
+        }
+
+        .newsletter button {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            background-color: #007bff;
+            padding: 0.4rem 1.4rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter button:hover {
+            color: rgb(0, 0, 0);
+            background-color: #00ff00;
+        }
+
+        .contact-section {
+            padding: 2rem;
+            background: #eee;
+            text-align: center;
+        }
+
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-section input,
+        .contact-section textarea {
+            width: 300px;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .contact-section button {
+            font-size: 1rem;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .contact-section button:hover {
+            background-color: #00ff00;
+            color: black;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 0.6rem 1rem;
+            background-color: brown;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .back-to-top:hover {
+            background-color: #333;
+        }
+
+        @media (max-width: 576px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                font-size: 1.5rem;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter input[type="email"] {
+                width: 100%;
+                margin: 0 0 1rem 0;
+            }
+        }
+    </style>
 </head>
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        box-sizing: border-box;
-    }
-
-    body {
-        background-color: wheat;
-    }
-
-    header {
-        background-color: brown;
-        color: white;
-        padding: 40px;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    nav ul {
-        display: flex;
-        gap: 20px;
-        list-style: none;
-    }
-
-    nav a {
-        padding: 8px 12px;
-        text-decoration: none;
-
-    }
-
-    .hero {
-        font-size: 2rem;
-        text-align: center;
-        margin: 4rem;
-        color: rgb(240, 66, 231);
-        animation: pulse 1s infinite;
-    }
-
-
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-        }
-
-        50% {
-            transform: scale(1.05);
-        }
-
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    .products {
-        padding: 2rem 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 3rem;
-
-    }
-
-    .product-card {
-        width: 400px;
-        background: linear-gradient(180deg, rgb(129, 252, 235), rgb(203, 146, 250));
-        padding: 1rem;
-        text-align: center;
-        margin: auto;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-        border-radius: 2rem;
-    }
-
-    .product-card:hover {
-        transform: scale(1.15);
-    }
-
-    .product-card img {
-        height: 150px;
-        width: 100%;
-        padding: 0rem 5rem;
-        margin-bottom: 2rem;
-        border-radius: 40%;
-    }
-
-    .product-card h3 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .product-card p {
-        color: red;
-        text-transform: capitalize;
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        animation: pulse 1s infinite;
-    }
-
-    .newsletter {
-        background: #f4f4f4;
-        padding: 2rem;
-        text-align: center;
-    }
-
-    .newsletter h2 {
-        background: #f4f4f4;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .newsletter p {
-        background: #f4f4f4;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .newsletter input[type="email"] {
-        padding: 0.5rem;
-        margin-right: 0.5rem;
-        width: 250px;
-    }
-
-    .newsletter button {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: white;
-        background-color: #007bff;
-        padding: 0.4rem 1.4rem;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    .newsletter button:hover {
-        color: rgb(0, 0, 0);
-        background-color: #00ff00;
-    }
-      footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 576px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .products {
-        padding: 2rem 0;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 3rem;
-
-    }
-
-      .newsletter input[type="email"] {
-        width: 100%;
-        margin: 0 0 1rem 0;
-      }
-    }
-</style>
 
 <body>
     <header>
-        <nav class="logo">
-            <div>
+        <nav aria-label="Main Navigation">
+            <div class="logo">
                 <h1>ShopEase</h1>
             </div>
-            <div>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Cart</a></li>
-                </ul>
-            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
         </nav>
     </header>
+
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <h1>Big Summer Sale - Up to 50% Off!</h1>
         </section>
 
-        <section class="container products">
-            <div class="product-card">
-                <img src="./assets/images/product1.jpeg" alt="Product 1" />
-                <h3>smart Watch</h3>
-                <p>$29.99</p>
-            </div>
-            <div class="product-card">
-                <img src="./assets/images/product2.jpeg" alt="Product 2" />
-                <h3>Air pods</h3>
-                <p>$39.99</p>
-            </div>
-            <div class="product-card">
-                <img src="./assets/images/products3.jpeg" alt="Product 3" />
-                <h3>speakers</h3>
-                <p>$49.99</p>
-            </div>
-            <div class="product-card">
-                <img src="./assets/images/products4.jpeg" alt="Product 1" />
-                <h3>sneakers</h3>
-                <p>$29.99</p>
-            </div>
-            <div class="product-card">
-                <img src="./assets/images/products5.jpeg" alt="Product 2" />
-                <h3>hoodie</h3>
-                <p>$39.99</p>
-            </div>
-            <div class="product-card">
-                <img src="./assets/images/products6.jpeg" alt="Product 3" />
-                <h3>mobile cases</h3>
-                <p>$49.99</p>
-            </div>
+        <section class="container products" id="productContainer">
+            <!-- JavaScript will inject product cards here -->
         </section>
+
         <section class="newsletter">
             <h2>Subscribe to our Newsletter</h2>
             <p>Get updates on new products and exclusive deals!</p>
-            <input type="email" placeholder="Enter your email">
-            <button>Subscribe</button>
+            <input type="email" placeholder="Enter your email" />
+            <button type="button">Subscribe</button>
         </section>
 
-
-
+        <section class="contact-section">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
     </main>
+
     <footer>
-    <p>&copy; 2025 ShopNow. All rights reserved.</p>
-  </footer>
+        <p>&copy; 2025 ShopEase. All rights reserved.</p>
+    </footer>
+
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Top</button>
+
+    <script>
+        const products = [
+            {
+                name: "Smart Watch",
+                price: 29.99,
+                img: "https://images.unsplash.com/photo-1600180758890-6d3253c2f360?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Air Pods",
+                price: 39.99,
+                img: "https://images.unsplash.com/photo-1585386959984-a4155226f8e1?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Speakers",
+                price: 49.99,
+                img: "https://images.unsplash.com/photo-1587574293340-f6fc3511a1d6?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Sneakers",
+                price: 29.99,
+                img: "https://images.unsplash.com/photo-1600180758432-8c94cb7412f9?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Hoodie",
+                price: 39.99,
+                img: "https://images.unsplash.com/photo-1585386959984-4f45c3f0e758?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Mobile Cases",
+                price: 49.99,
+                img: "https://images.unsplash.com/photo-1621295253721-646263429a8e?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Gaming Mouse",
+                price: 24.99,
+                img: "https://images.unsplash.com/photo-1620217496349-6f88226c0f74?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Bluetooth Keyboard",
+                price: 34.99,
+                img: "https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                name: "Fitness Band",
+                price: 44.99,
+                img: "https://images.unsplash.com/photo-1611707579778-3b6a1c2c7e8f?auto=format&fit=crop&w=400&q=80"
+            }
+        ];
+
+        const productContainer = document.getElementById("productContainer");
+
+        products.forEach(product => {
+            const card = document.createElement("div");
+            card.classList.add("product-card");
+
+            const img = document.createElement("img");
+            img.src = product.img;
+            img.alt = product.name;
+            img.onerror = () => {
+                img.src = 'https://source.unsplash.com/400x400/?product';
+            };
+
+            const name = document.createElement("h3");
+            name.textContent = product.name;
+
+            const price = document.createElement("p");
+            price.textContent = `$${product.price.toFixed(2)}`;
+
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = "Add to Cart";
+            button.onclick = () => addToCart(product.name, product.price, product.img);
+
+            card.appendChild(img);
+            card.appendChild(name);
+            card.appendChild(price);
+            card.appendChild(button);
+
+            productContainer.appendChild(card);
+        });
+
+        function addToCart(name, price, img) {
+            const product = { name, price, img };
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${name} added to your cart for $${price.toFixed(2)} 🛒`);
+            console.log(`Cart now has ${cart.length} item(s).`);
+        }
+
+    </script>
+
 
 </body>
 
