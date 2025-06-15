@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: wheat;
+    }
+
+    header {
+        background-color: brown;
+        color: white;
+        padding: 40px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        text-decoration: none;
+
+    }
+
+    .hero {
+        font-size: 2rem;
+        text-align: center;
+        margin: 4rem;
+        color: rgb(240, 66, 231);
+        animation: pulse 1s infinite;
+    }
+
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .products {
+        padding: 2rem 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3rem;
+
+    }
+
+    .product-card {
+        width: 400px;
+        background: linear-gradient(180deg, rgb(129, 252, 235), rgb(203, 146, 250));
+        padding: 1rem;
+        text-align: center;
+        margin: auto;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        border-radius: 2rem;
+    }
+
+    .product-card:hover {
+        transform: scale(1.15);
+    }
+
+    .product-card img {
+        height: 150px;
+        width: 100%;
+        padding: 0rem 5rem;
+        margin-bottom: 2rem;
+        border-radius: 40%;
+    }
+
+    .product-card h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .product-card p {
+        color: red;
+        text-transform: capitalize;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        animation: pulse 1s infinite;
+    }
+
+    .newsletter {
+        background: #f4f4f4;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .newsletter h2 {
+        background: #f4f4f4;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .newsletter p {
+        background: #f4f4f4;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .newsletter input[type="email"] {
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+        width: 250px;
+    }
+
+    .newsletter button {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: white;
+        background-color: #007bff;
+        padding: 0.4rem 1.4rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .newsletter button:hover {
+        color: rgb(0, 0, 0);
+        background-color: #00ff00;
+    }
+      footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 576px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .products {
+        padding: 2rem 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+
+    }
+
+      .newsletter input[type="email"] {
+        width: 100%;
+        margin: 0 0 1rem 0;
+      }
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="logo">
+            <div>
+                <h1>ShopEase</h1>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Cart</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Big Summer Sale - Up to 50% Off!</h1>
+        </section>
+
+        <section class="container products">
+            <div class="product-card">
+                <img src="./assets/images/product1.jpeg" alt="Product 1" />
+                <h3>smart Watch</h3>
+                <p>$29.99</p>
+            </div>
+            <div class="product-card">
+                <img src="./assets/images/product2.jpeg" alt="Product 2" />
+                <h3>Air pods</h3>
+                <p>$39.99</p>
+            </div>
+            <div class="product-card">
+                <img src="./assets/images/products3.jpeg" alt="Product 3" />
+                <h3>speakers</h3>
+                <p>$49.99</p>
+            </div>
+            <div class="product-card">
+                <img src="./assets/images/products4.jpeg" alt="Product 1" />
+                <h3>sneakers</h3>
+                <p>$29.99</p>
+            </div>
+            <div class="product-card">
+                <img src="./assets/images/products5.jpeg" alt="Product 2" />
+                <h3>hoodie</h3>
+                <p>$39.99</p>
+            </div>
+            <div class="product-card">
+                <img src="./assets/images/products6.jpeg" alt="Product 3" />
+                <h3>mobile cases</h3>
+                <p>$49.99</p>
+            </div>
+        </section>
+        <section class="newsletter">
+            <h2>Subscribe to our Newsletter</h2>
+            <p>Get updates on new products and exclusive deals!</p>
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+        </section>
+
+
+
+    </main>
+    <footer>
+    <p>&copy; 2025 ShopNow. All rights reserved.</p>
+  </footer>
+
+</body>
+
+</html>
